@@ -5,7 +5,7 @@
 ESP32 BLE scanner that detects AR/smart glasses nearby and flashes the LED as a visual alert. Forked from [yj_nearbyglasses](https://github.com/yjeanrenaud/yj_nearbyglasses) (Android app) and reimplemented as standalone ESP32 firmware.
 
 **Author:** Jeff Records
-**Repo:** [jeff-is-working/ESP-GlassHole](https://github.com/jeff-is-working/ESP-GlassHole)
+**Repo:** [surveillancewatch/ESP-GlassHole](https://github.com/surveillancewatch/ESP-GlassHole)
 **Upstream:** [yjeanrenaud/yj_nearbyglasses](https://github.com/yjeanrenaud/yj_nearbyglasses)
 **License:** AGPL-3.0 (inherited from upstream)
 
@@ -68,6 +68,7 @@ RGB LED boards (ESP32-S3, C3): Red = alert, dim blue = scanning idle.
 cd firmware
 pio run -e esp32dev        # Build for ESP32 DevKit
 pio run -e esp32-s3        # Build for ESP32-S3
+pio run -e esp32-c3        # Build for ESP32-C3
 pio run -e xiao-s3         # Build for Seeed XIAO ESP32-S3
 pio run -e esp32dev -t upload   # Flash
 pio device monitor              # Serial monitor (115200 baud)
@@ -76,8 +77,8 @@ pio device monitor              # Serial monitor (115200 baud)
 ## Release Process
 
 1. Update the version string in `main.cpp` (search for `"version"`)
-2. Commit and push to `main`
-3. `git tag v1.x.x && git push origin v1.x.x`
+2. Commit, then give the user the push command. Agents do not push, merge, or complete PRs. (USER runs: push `main` via an approved PR.)
+3. USER runs: tag the release (`git tag v1.x.x`) and push the tag. The agent never pushes the tag.
 4. CI builds merged .bin files for all 4 boards and creates a GitHub Release
 
 ## Serial Protocol (USB, 115200 baud)
